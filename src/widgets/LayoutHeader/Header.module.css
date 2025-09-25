@@ -2,6 +2,9 @@
     background-color: #EFAE8F;
 }
 
-.logo {
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 5px 0 5px 0;
 }
