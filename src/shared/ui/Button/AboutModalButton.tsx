@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { AboutModal } from "../Modal/AboutModal";
 import styles from "./Button.module.css";
@@ -6,6 +6,7 @@ import styles from "./Button.module.css";
 export function AboutModalButton() {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const containerRef = useRef<HTMLElement | null>(null);
+    const handleModalClose = useCallback(() => setModalOpen(false), [])
 
     useEffect(() => {
         let container = document.getElementById('about-modal');
@@ -19,7 +20,6 @@ export function AboutModalButton() {
 
 
     const hanldeModalOpen = () => setModalOpen(true);
-    const handleModalClose = () => setModalOpen(false);
 
     return (
         <>
