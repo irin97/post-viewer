@@ -3,23 +3,25 @@ import { Footer } from "@/widgets/LayoutFooter/Footer";
 import { PostList } from "@/widgets/PostList/PostList";
 import styles from "./MainLayout.module.css";
 import { ErrorBoundary } from "../ui/ErrorBoundary";
+import { ThemeProvider } from "../lib/theme/ThemeProvider";
 
 export function MainLayout() {
 
     return (
         <ErrorBoundary>
-            <Header />
-            <main>
-                <section className={styles.section}>
-                    <div className={styles.container}>
-                        <h1 className={styles.header}> Post viewer</h1>
-                        <ErrorBoundary>
-                            <PostList posts={postList} />
-                        </ErrorBoundary>
-                    </div>
-                </section>
-            </main>
-            <Footer />
+            <ThemeProvider>
+                <Header />
+                <main>
+                    <section className={styles.section}>
+                        <div className={styles.container}>
+                            <ErrorBoundary>
+                                <PostList posts={postList} />
+                            </ErrorBoundary>
+                        </div>
+                    </section>
+                </main>
+                <Footer />
+            </ThemeProvider>
         </ErrorBoundary>
     )
 }
