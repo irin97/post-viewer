@@ -7,5 +7,5 @@ export function ThemeSwitcher() {
 
     const handleToggleTheme = () => setTheme(theme === 'Light' ? 'Dark' : 'Light');
 
-    return <button className={styles.button} onClick={handleToggleTheme}>{`Switch to ${innactiveTheme} mode`}</button>
+    return <button className={`${styles.button} ${styles.buttonLight}`} onClick={handleToggleTheme}>{`Switch to ${innactiveTheme} mode`}</button>
 }
