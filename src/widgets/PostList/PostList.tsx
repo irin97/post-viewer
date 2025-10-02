@@ -1,21 +1,22 @@
-import { PostCard } from "@/entities/post/ui/PostCard";
-import type { FC } from "react";
-import type { PostListType } from "@/widgets/PostList/Post";
-import styles from "./PostList.module.css";
+import { PostLengthFilter } from "@/features/PostLengthFilter/ui/PostLengthFilter";
+import { FilteredPostList } from "./FilteredPostList";
+import { useState, useCallback, useMemo, type FC } from "react";
+import { postLengthFilter } from "@/features/PostLengthFilter/lib/filterByLength";
+import type { PostListType } from "./Post";
 
 interface PostListProps {
-    posts: PostListType;
+    postList: PostListType
 }
 
-export const PostList: FC<PostListProps> = ({ posts }) => {
+export const PostList: FC<PostListProps> = ({ postList }) => {
+    const [filterLength, setFilterLength] = useState<number>(0);
+    const setFilterLengthMemo = useCallback((value: number) => setFilterLength(value), [])
+    const filteredPosts = useMemo(() => postLengthFilter(postList, filterLength), [postList, filterLength])
 
-    const listPosts = posts.map(item => (
-        <li className={styles.listItem} key={item.id} >
-            <PostCard
-                post={item}
-            />
-        </li >
-    ))
-
-    return <ul className={styles.list}> {listPosts} </ul>
+    return (
+        <>
+            <PostLengthFilter setFilterLength={setFilterLengthMemo} />
+            <FilteredPostList postList={filteredPosts} />
+        </>
+    )
 }

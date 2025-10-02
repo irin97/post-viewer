@@ -2,9 +2,10 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { AboutModal } from "../Modal/AboutModal";
 import styles from "./Button.module.css";
+import { AboutModalContext } from "../Modal/ModalContext";
 
 export function AboutModalButton() {
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const [isOpen, setModalOpen] = useState<boolean>(false);
     const containerRef = useRef<HTMLElement | null>(null);
     const handleModalClose = useCallback(() => setModalOpen(false), [])
 
@@ -19,12 +20,14 @@ export function AboutModalButton() {
     }, [])
 
 
-    const hanldeModalOpen = () => setModalOpen(true);
+    const handleModalOpen = () => setModalOpen(true);
 
     return (
         <>
-            <button className={styles.button} onClick={hanldeModalOpen}>About us</button>
-            {containerRef.current && createPortal(<AboutModal onClose={handleModalClose} isOpen={modalOpen} />, containerRef.current)}
+            <AboutModalContext value={{ isOpen, handleModalClose, handleModalOpen }}>
+                <button className={`${styles.button} ${styles.buttonLight}`} onClick={handleModalOpen}>About us</button>
+                {containerRef.current && createPortal(<AboutModal />, containerRef.current)}
+            </AboutModalContext>
         </>
     )
 }
