@@ -4,18 +4,24 @@ import styles from "./PostCard.module.css";
 import { useTheme } from "@/shared/lib/theme/useTheme";
 import { CommentList } from "@/widgets/CommentList/ui/CommentList";
 import { ToggleCommentsButton } from "./ToggleCommentsButton";
-import { commentListData } from "@/shared/mocks/commentList";
+import { useLazyGetCommentsListQuery } from "../api/postsApi";
 
 interface PostProps {
     post: PostType
 }
 
 export const PostCard: FC<PostProps> = ({ post }) => {
+    const [fetchComments, { data: comments, isLoading }] = useLazyGetCommentsListQuery();
     const [commentsOpen, setCommentsOpen] = useState(false);
     const { theme } = useTheme();
     const handleCommentsOpen = useCallback(() => {
-        setCommentsOpen(prev => !prev)
-    }, [])
+        setCommentsOpen((prev) => {
+            if (!prev) fetchComments(post.id)
+            return !prev
+        }
+
+        )
+    }, [fetchComments, post.id])
 
     return (
         <div className={`${styles.card} ${styles['card' + theme]}`}>
@@ -26,9 +32,11 @@ export const PostCard: FC<PostProps> = ({ post }) => {
             </div>
             <>
                 <ToggleCommentsButton commentsOpen={commentsOpen} onClick={handleCommentsOpen} />
-                {commentsOpen && <CommentList comments={commentListData} ></CommentList>}
+                {commentsOpen && (
+                    isLoading ?
+                        <div className={`${styles['text' + theme]}`}>Loading...</div>
+                        : comments && <CommentList comments={comments} ></CommentList>)}
             </>
-
         </div>
     )
 }

@@ -3,11 +3,7 @@ import { Footer } from "@/widgets/LayoutFooter/Footer";
 import styles from "./MainLayout.module.css";
 import { ErrorBoundary } from "../ui/ErrorBoundary";
 import { ThemeProvider } from "../lib/theme/ThemeProvider";
-import { PostList } from "@/widgets/PostList/PostList";
-import { withLoading } from "../lib/hoc/withLoading";
-import { postListData } from "../mocks/postList";
-
-const PostListWithLoading  = withLoading(PostList)
+import { PostsPage } from "@/pages/PostsPage";
 
 export function MainLayout() {
 
@@ -19,7 +15,7 @@ export function MainLayout() {
                     <section className={styles.section}>
                         <div className={styles.container}>
                             <ErrorBoundary>
-                                <PostListWithLoading isLoad={true} postList={postListData} />
+                                <PostsPage />
                             </ErrorBoundary>
                         </div>
                     </section>
