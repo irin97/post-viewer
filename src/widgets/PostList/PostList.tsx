@@ -1,5 +1,5 @@
 import { PostLengthFilter } from "@/features/PostLengthFilter/ui/PostLengthFilter";
-import { FilteredPostList } from "./FilteredPostList";
+import { PostListViewer } from "./PostListViewer";
 import { useState, useCallback, useMemo, type FC } from "react";
 import { postLengthFilter } from "@/features/PostLengthFilter/lib/filterByLength";
 import type { PostListType } from "./Post";
@@ -25,7 +25,7 @@ export const PostList: FC<PostListProps> = ({ postList }) => {
     return (
         <>
             <PostLengthFilter setFilterLength={setFilterLengthMemo} minValue={minTitleLength} maxValue={maxTitleLength} />
-            <FilteredPostList postList={filteredPosts} />
+            <PostListViewer postList={filteredPosts} withComments={true} />
         </>
     )
 }

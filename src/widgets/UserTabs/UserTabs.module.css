@@ -1,0 +1,10 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    column-gap: 25px;
+    color: white
+}
+
+.linkActive {
+   text-decoration: underline;
+} 
