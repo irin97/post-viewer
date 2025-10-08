@@ -3,7 +3,7 @@ import { Footer } from "@/widgets/LayoutFooter/Footer";
 import styles from "./MainLayout.module.css";
 import { ErrorBoundary } from "../ui/ErrorBoundary";
 import { ThemeProvider } from "../lib/theme/ThemeProvider";
-import { PostsPage } from "@/pages/PostsPage";
+import { Outlet } from "react-router-dom";
 
 export function MainLayout() {
 
@@ -15,7 +15,7 @@ export function MainLayout() {
                     <section className={styles.section}>
                         <div className={styles.container}>
                             <ErrorBoundary>
-                                <PostsPage />
+                                <Outlet />
                             </ErrorBoundary>
                         </div>
                     </section>

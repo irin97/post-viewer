@@ -5,12 +5,15 @@ import { useTheme } from "@/shared/lib/theme/useTheme";
 import { CommentList } from "@/widgets/CommentList/ui/CommentList";
 import { ToggleCommentsButton } from "./ToggleCommentsButton";
 import { useLazyGetCommentsListQuery } from "../api/postsApi";
+import { PostData } from "./PostData";
+import { Link } from "react-router-dom";
 
-interface PostProps {
-    post: PostType
+export interface PostProps {
+    post: PostType;
+    withComments?: boolean
 }
 
-export const PostCard: FC<PostProps> = ({ post }) => {
+export const PostCard: FC<PostProps> = ({ post, withComments }) => {
     const [fetchComments, { data: comments, isLoading }] = useLazyGetCommentsListQuery();
     const [commentsOpen, setCommentsOpen] = useState(false);
     const { theme } = useTheme();
@@ -18,25 +21,27 @@ export const PostCard: FC<PostProps> = ({ post }) => {
         setCommentsOpen((prev) => {
             if (!prev) fetchComments(post.id)
             return !prev
-        }
-
-        )
+        })
     }, [fetchComments, post.id])
 
     return (
         <div className={`${styles.card} ${styles['card' + theme]}`}>
-            <div className={styles.cardContent}>
-                <p className={`${styles.description} ${styles['text' + theme]}`}>ID автора: {post.userId}</p>
-                <h2 className={`${styles.title} ${styles['text' + theme]}`}>{post.title}</h2>
-                <p className={`${styles.description} ${styles['text' + theme]}`}>{post.body} </p>
-            </div>
-            <>
-                <ToggleCommentsButton commentsOpen={commentsOpen} onClick={handleCommentsOpen} />
-                {commentsOpen && (
-                    isLoading ?
-                        <div className={`${styles['text' + theme]}`}>Loading...</div>
-                        : comments && <CommentList comments={comments} ></CommentList>)}
-            </>
+            <PostData post={post} />
+
+            {withComments && (
+                <>
+                    <ToggleCommentsButton commentsOpen={commentsOpen} onClick={handleCommentsOpen} />
+
+                    {commentsOpen && (
+                        isLoading ?
+                            <div className={`${styles['text' + theme]}`}>Loading...</div>
+                            : comments && <CommentList comments={comments} />
+                    )}
+
+                    <Link to={`/posts/${post.id}`} className={`${styles.more} ${styles['text' + theme]}`}>Learn More</Link>
+                </>
+            )}
+
         </div>
     )
 }
