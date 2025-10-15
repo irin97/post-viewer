@@ -4,7 +4,7 @@ import styles from "./PostCard.module.css";
 import { useTheme } from "@/shared/lib/theme/useTheme";
 import { CommentList } from "@/widgets/CommentList/ui/CommentList";
 import { ToggleCommentsButton } from "./ToggleCommentsButton";
-import { useLazyGetCommentsListQuery } from "../api/postsApi";
+import { useLazyGetCommenstListQuery } from "@/entities/comment/api/commentsApi"; 
 import { PostData } from "./PostData";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ export interface PostProps {
 }
 
 export const PostCard: FC<PostProps> = ({ post, withComments }) => {
-    const [fetchComments, { data: comments, isLoading }] = useLazyGetCommentsListQuery();
+    const [fetchComments, { data: comments, isLoading }] = useLazyGetCommenstListQuery();
     const [commentsOpen, setCommentsOpen] = useState(false);
     const { theme } = useTheme();
     const handleCommentsOpen = useCallback(() => {

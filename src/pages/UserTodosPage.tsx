@@ -1,6 +1,6 @@
 import { withLoading } from "@/shared/lib/hoc/withLoading";
 import { TodoList } from "@/widgets/UserTodos/TodoList";
-import { useGetUsersTodosListQuery } from "@/entities/user/api/usersApi";
+import { useGetUsersTodosListQuery } from "@/entities/todo/api/todosApi"; 
 import { useParams } from "react-router-dom";
 
 const TodoListWithLoading = withLoading(TodoList)
