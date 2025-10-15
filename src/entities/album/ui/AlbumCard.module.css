@@ -3,17 +3,13 @@
     flex-direction: column;
     row-gap: 25px;
     align-items: flex-start;
+    justify-content: space-between;
     background-color: white;
     border-radius: 15px;
     padding: 25px;
+    min-height: 135px;
     border: 1px solid rgb(230, 230, 230);
     transition: background-color 0.1s ease-in-out;
-}
-
-.cardContent {
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
 }
 
 .cardLight {
@@ -22,11 +18,6 @@
 
 .cardDark {
     background-color: rgb(95, 95, 95);
-}
-
-.description {
-    margin: 0;
-    transition: color 0.1s ease-in-out;
 }
 
 .title {
@@ -46,6 +37,6 @@
     transition: color 0.1s ease-in-out;
 }
 
-.more {
+.link {
     text-decoration: underline;
 }
