@@ -5,7 +5,7 @@ import { usePosts } from "@/features/PostList/model/hooks/usePosts";
 const PostListWithLoading = withLoading(PostList);
 
 export const PostsPage = () => {
-    const { posts, isLoading } = usePosts();
+    const { storePosts, isLoading } = usePosts();
 
-    return <PostListWithLoading isLoad={!isLoading} postList={posts || []}></PostListWithLoading>
+    return <PostListWithLoading isLoad={!isLoading} postList={storePosts || []}></PostListWithLoading>
 }
