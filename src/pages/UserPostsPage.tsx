@@ -1,6 +1,6 @@
 import { withLoading } from "@/shared/lib/hoc/withLoading";
 import { useParams } from "react-router-dom";
-import { useGetUsersPostListQuery } from "@/entities/user/api/usersApi";
+import { useGetUsersPostListQuery } from "@/entities/post/api/postsApi";
 import { PostListViewer } from "@/widgets/PostList/PostListViewer";
 
 const PostListViewerWithLoading = withLoading(PostListViewer);

@@ -1,6 +1,21 @@
 import { useGetPostListQuery } from "@/entities/post/api/postsApi";
+import { setPosts } from "@/entities/post/model/slice/postSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postsSelectors } from "@/entities/post/model/slice/postSlice";
 
 export const usePosts = () => {
-    const { data: posts, error, isLoading } = useGetPostListQuery()
-    return { posts, error, isLoading }
+
+    const { data: posts, isLoading, isSuccess } = useGetPostListQuery();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (isSuccess && posts) {
+            dispatch(setPosts(posts))
+        }
+    }, [isSuccess, posts, dispatch])
+
+    const storePosts = useSelector(postsSelectors.selectAll);
+
+    return { storePosts, isLoading }
 }
