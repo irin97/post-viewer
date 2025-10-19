@@ -1,24 +1,18 @@
 import { PostCard } from "@/entities/post/ui/PostCard";
-import { type FC } from "react";
 import styles from "./PostList.module.css";
-import { type PostListType } from "./Post";
+import { type PostListType } from "@/entities/post/model/types";
+import { ItemList } from "@/shared/ui/ItemList/ItemList";
 
 interface PostListViewerProps {
     postList: PostListType;
     withComments?: boolean
 }
 
-export const PostListViewer: FC<PostListViewerProps> = ({ postList, withComments = true }) => {
-    const listPosts = postList.map(item => (
-        <li key={item.id} >
-            <PostCard
-                post={item}
-                withComments={withComments}
-            />
-        </li >
-    ))
+export const PostListViewer = ({ postList, withComments = true }: PostListViewerProps) => {
 
-    return <>
-        <ul className={styles.list}> {listPosts} </ul>
-    </>
+    return <ItemList
+        items={postList}
+        renderItem={(item) => <PostCard post={item} withComments={withComments} />}
+        listClassName={styles.list}
+    />
 }

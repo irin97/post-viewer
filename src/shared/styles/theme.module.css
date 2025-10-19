@@ -1,0 +1,17 @@
+.cardLight {
+    background-color: white;
+}
+
+.cardDark {
+    background-color: rgb(95, 95, 95);
+}
+
+.textLight {
+    color: black;
+    transition: color 0.1s ease-in-out;
+}
+
+.textDark {
+    color: white;
+    transition: color 0.1s ease-in-out;
+}

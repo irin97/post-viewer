@@ -3,11 +3,12 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUsers, usersSelectors } from "@/entities/user/model/slice/userSlice";
 import { useSelector } from "react-redux";
+import type { AppDispatch } from "@/app/providers/store";
 
 export const useUsers = () => {
 
     const { data: users, isLoading, isSuccess } = useGetUserListQuery();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         if (isSuccess && users) {

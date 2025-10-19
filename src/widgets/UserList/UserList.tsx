@@ -1,19 +1,17 @@
-import { type FC } from "react";
-import type { UserListType } from "./User";
+import type { UserListType } from "@/entities/user/model/types";
 import { UserCard } from "@/entities/user/ui/UserCard";
-import styles from './UserList.module.css'
+import styles from './UserList.module.css';
+import { ItemList } from "@/shared/ui/ItemList/ItemList";
 
 interface UserListProps {
     userList: UserListType
 }
 
-export const UserList: FC<UserListProps> = ({ userList }) => {
+export const UserList = ({ userList }: UserListProps) => {
 
-    const listUsers = userList.map(item => (
-        <li key={item.id}>
-            <UserCard user={item} />
-        </li>
-    ))
-
-    return <ul className={styles.list}> {listUsers} </ul>
+    return <ItemList
+        items={userList}
+        renderItem={(item) => <UserCard user={item} />}
+        listClassName={styles.list}
+    />
 }

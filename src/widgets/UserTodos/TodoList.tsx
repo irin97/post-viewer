@@ -1,18 +1,17 @@
 import { TodoCard } from "@/entities/todo/ui/TodoCard";
-import { type FC } from "react";
-import type { TodoListType } from '@/widgets/UserTodos/Todo';
-import styles from './TodoList.module.css'
+import type { TodoListType } from '@/entities/todo/model/types';
+import styles from './TodoList.module.css';
+import { ItemList } from "@/shared/ui/ItemList/ItemList";
 
 interface TodoListProps {
     todoList: TodoListType;
 }
 
-export const TodoList: FC<TodoListProps> = ({ todoList }) => {
-    const listTodos = todoList.map(item => (
-        <li key={item.id}>
-            <TodoCard todo={item} />
-        </li>
-    ))
+export const TodoList = ({ todoList }: TodoListProps) => {
 
-    return <ul className={styles.list}>{listTodos}</ul>
+    return <ItemList
+        items={todoList}
+        renderItem={(item) => <TodoCard todo={item} />}
+        listClassName={styles.list}
+    />
 }

@@ -1,4 +1,4 @@
-import type { CommentListType } from "@/widgets/CommentList/ui/Comment"
+import type { CommentListType } from "@/entities/comment/model/types"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const commentsApi = createApi({

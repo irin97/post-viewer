@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { UserListType } from '@/widgets/UserList/User';
-import type { AlbumListType } from '@/widgets/UserAlbums/Album';
+import type { UserListType } from '@/entities/user/model/types';
+import type { AlbumListType } from '@/entities/album/model/types';
 
 export const usersApi = createApi({
 

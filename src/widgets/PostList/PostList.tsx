@@ -2,7 +2,7 @@ import { PostLengthFilter } from "@/features/PostLengthFilter/ui/PostLengthFilte
 import { PostListViewer } from "./PostListViewer";
 import { useState, useCallback, useMemo, type FC } from "react";
 import { postLengthFilter } from "@/features/PostLengthFilter/lib/filterByLength";
-import type { PostListType } from "./Post";
+import type { PostListType } from "@/entities/post/model/types";
 
 interface PostListProps {
     postList: PostListType

@@ -1,23 +1,17 @@
-import { type FC } from "react";
-import type { PhotoListType } from "./Photo";
+import type { PhotoListType } from "@/entities/photo/model/types";
 import styles from './PhotoList.module.css';
-import { useTheme } from "@/shared/lib/theme/useTheme";
+import { ItemList } from "@/shared/ui/ItemList/ItemList";
+import { PhotoCard } from "@/entities/photo/ui/PhotoCard";
 
 interface PhotoListProps {
     photoList: PhotoListType
 }
 
-export const PhotoList: FC<PhotoListProps> = ({ photoList }) => {
-    const { theme } = useTheme();
+export const PhotoList = ({ photoList }: PhotoListProps) => {
 
-    const listPhotos = photoList.map(item => (
-        <li key={item.id}>
-            <div className={`${styles.card} ${styles['card' + theme]}`}>
-                <img src={item.thumbnailUrl} alt="img" />
-                <h2 className={`${styles.title} ${styles['text' + theme]}`}>{item.title}</h2>
-            </div>
-        </li>
-    ))
-
-    return <ul className={styles.list}>{listPhotos}</ul>
+    return <ItemList
+        items={photoList}
+        renderItem={(item) => <PhotoCard photo={item} />}
+        listClassName={styles.list}
+    />
 }

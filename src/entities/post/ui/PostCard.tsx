@@ -1,10 +1,11 @@
 import { type FC, useCallback, useState } from "react";
-import type { PostType } from "@/widgets/PostList/Post";
+import type { PostType } from "@/entities/post/model/types";
 import styles from "./PostCard.module.css";
+import themeStyles from '@/shared/styles/theme.module.css';
 import { useTheme } from "@/shared/lib/theme/useTheme";
 import { CommentList } from "@/widgets/CommentList/ui/CommentList";
 import { ToggleCommentsButton } from "./ToggleCommentsButton";
-import { useLazyGetCommenstListQuery } from "@/entities/comment/api/commentsApi"; 
+import { useLazyGetCommenstListQuery } from "@/entities/comment/api/commentsApi";
 import { PostData } from "./PostData";
 import { Link } from "react-router-dom";
 
@@ -15,7 +16,7 @@ export interface PostProps {
 
 export const PostCard: FC<PostProps> = ({ post, withComments }) => {
     const [fetchComments, { data: comments, isLoading }] = useLazyGetCommenstListQuery();
-    const [commentsOpen, setCommentsOpen] = useState(false);
+    const [commentsOpen, setCommentsOpen] = useState<boolean>(false);
     const { theme } = useTheme();
     const handleCommentsOpen = useCallback(() => {
         setCommentsOpen((prev) => {
@@ -25,7 +26,7 @@ export const PostCard: FC<PostProps> = ({ post, withComments }) => {
     }, [fetchComments, post.id])
 
     return (
-        <div className={`${styles.card} ${styles['card' + theme]}`}>
+        <div className={`${styles.card} ${themeStyles['card' + theme]}`}>
             <PostData post={post} />
 
             {withComments && (
@@ -34,11 +35,11 @@ export const PostCard: FC<PostProps> = ({ post, withComments }) => {
 
                     {commentsOpen && (
                         isLoading ?
-                            <div className={`${styles['text' + theme]}`}>Loading...</div>
+                            <div className={`${themeStyles['text' + theme]}`}>Loading...</div>
                             : comments && <CommentList comments={comments} />
                     )}
 
-                    <Link to={`/posts/${post.id}`} className={`${styles.more} ${styles['text' + theme]}`}>Learn More</Link>
+                    <Link to={`/posts/${post.id}`} className={`${styles.more} ${themeStyles['text' + theme]}`}>Learn More</Link>
                 </>
             )}
 
