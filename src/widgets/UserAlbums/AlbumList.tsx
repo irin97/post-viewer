@@ -1,18 +1,17 @@
-import { type FC } from "react";
-import type { AlbumListType } from "./Album";
+import type { AlbumListType } from "@/entities/album/model/types";
 import { AlbumCard } from "@/entities/album/ui/AlbumCard";
 import styles from '@/widgets/UserList/UserList.module.css';
+import { ItemList } from "@/shared/ui/ItemList/ItemList";
 
 interface AlbumListProps {
     albumList: AlbumListType;
 }
 
-export const AlbumList: FC<AlbumListProps> = ({ albumList }) => {
-    const listTodos = albumList.map(item => (
-        <li key={item.id}>
-            <AlbumCard album={item} />
-        </li>
-    ))
+export const AlbumList = ({ albumList }: AlbumListProps) => {
 
-    return <ul className={styles.list}>{listTodos}</ul>
+    return <ItemList
+        items={albumList}
+        renderItem={(item) => <AlbumCard album={item} />}
+        listClassName={styles.list}
+    />
 }

@@ -1,19 +1,18 @@
 import { CommentCard } from "@/entities/comment/ui/CommentCard";
-import { type FC } from "react";
-import type { CommentListType } from "./Comment";
-import styles from './CommentList.module.css'
+import type { CommentListType } from "@/entities/comment/model/types";
+import styles from './CommentList.module.css';
+import { ItemList } from "@/shared/ui/ItemList/ItemList";
 
 interface commentListProps {
     comments: CommentListType
 }
 
-export const CommentList: FC<commentListProps> = ({ comments }) => {
+export const CommentList = ({ comments }: commentListProps) => {
 
-    const listComments = comments.map(item => (
-        <li className={styles.listItem} key={item.id}>
-            <CommentCard comment={item} />
-        </li>
-    ))
-
-    return <ul className={styles.list}> {listComments} </ul>
+    return <ItemList
+        items={comments}
+        renderItem={(item) => <CommentCard comment={item} />}
+        itemClassName={styles.listItem}
+        listClassName={styles.list}
+    />
 }

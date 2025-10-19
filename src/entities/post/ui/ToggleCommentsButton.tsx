@@ -4,7 +4,7 @@ import { useTheme } from '@/shared/lib/theme/useTheme';
 
 interface ToggleCommentsButtonProps {
     commentsOpen: boolean
-    onClick: () => void
+    onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
 export const ToggleCommentsButton: FC<ToggleCommentsButtonProps> = ({ commentsOpen, onClick }) => {

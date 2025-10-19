@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { PhotoListType } from '@/widgets/PhotoList/Photo';
+import type { PhotoListType } from '@/entities/photo/model/types';
 
 
 export const albumsApi = createApi({

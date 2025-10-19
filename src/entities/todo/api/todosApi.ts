@@ -1,4 +1,4 @@
-import type { TodoListType } from "@/widgets/UserTodos/Todo";
+import type { TodoListType } from "@/entities/todo/model/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const todosApi = createApi({

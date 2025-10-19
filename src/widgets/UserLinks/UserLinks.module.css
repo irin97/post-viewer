@@ -7,13 +7,3 @@
 .link {
     text-decoration: underline;
 }
-
-.textLight {
-    color: black;
-    transition: color 0.1s ease-in-out;
-}
-
-.textDark {
-    color: white;
-    transition: color 0.1s ease-in-out;
-}

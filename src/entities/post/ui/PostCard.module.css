@@ -16,14 +16,6 @@
     row-gap: 15px;
 }
 
-.cardLight {
-    background-color: white;
-}
-
-.cardDark {
-    background-color: rgb(95, 95, 95);
-}
-
 .description {
     margin: 0;
     transition: color 0.1s ease-in-out;
@@ -33,16 +25,6 @@
     margin: 0;
     font-size: 19px;
     font-weight: 500;
-    transition: color 0.1s ease-in-out;
-}
-
-.textLight {
-    color: black;
-    transition: color 0.1s ease-in-out;
-}
-
-.textDark {
-    color: white;
     transition: color 0.1s ease-in-out;
 }
 
